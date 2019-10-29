@@ -3,8 +3,6 @@ import "./styles.css";
 import moment from "moment";
 import { Spinner, Row, Col } from "react-bootstrap";
 import WeatherBox from "./Box";
-import { connect } from "react-redux";
-import { getWeatherData } from "../redux/actions/weatherAction";
 
 class GetWeather extends Component {
   state = {
@@ -12,7 +10,8 @@ class GetWeather extends Component {
     country: "",
     days: [{ temp: "working" }],
     coords: {},
-    loading_status: true
+    loading_status: true,
+    selectedDay: ""
   };
 
   // creates the day objects and updates the state
@@ -42,16 +41,9 @@ class GetWeather extends Component {
       cityName: cityName,
       country: country,
       days: days,
-      loading_status: false
+      loading_status: false,
+      selectedDay: moment().format("dddd")
     });
-  };
-
-  // tries to make an API call with the given city name and triggers state update
-  makeApiCall = async coords => {
-    let lat = coords.latitude;
-    let lon = coords.longitude;
-
-    this.props.getWeatherData({ lat, lon });
   };
 
   // returns array with Indices of the next five days in the list
@@ -76,18 +68,10 @@ class GetWeather extends Component {
     return dayIndices;
   };
 
-  componentDidMount = () => {
-    console.log("coords", this.props.coords);
-    this.makeApiCall(this.props.coords);
-    this.setState({
-      coords: this.props.coords
-    });
-  };
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.getWeatherStatus === "done") {
-      this.updateState(nextProps.data);
-    } else if (nextProps.getWeatherStatus === "error") {
+    if (nextProps.getWeatherDataStatus === "done") {
+      this.updateState(nextProps.weatherApiData);
+    } else if (nextProps.getWeatherDataStatus === "error") {
       this.setState({
         loading_status: false
       });
@@ -95,17 +79,19 @@ class GetWeather extends Component {
   }
 
   render() {
-    const { days, country, cityName, loading_status } = this.state;
+    const { days, country, cityName, loading_status, selectedDay } = this.state;
+    console.log("days", days);
+
     return (
       <div id="main-div">
-        <h1 className="title" style={{ textAlign: "center" }}>
+        <h1 className="title" style={{ textAlign: "center", color: "#04bffe" }}>
           Weather Forecast
         </h1>
         <span className="main">
           {loading_status ? (
             <Spinner animation="grow" />
           ) : (
-            <div style={{ width: "100%" }}>
+            <div className="wetherContainer">
               <div className="headings-row">
                 <div className="first-div">
                   <h3 className="weather-widget__city-name">
@@ -119,14 +105,17 @@ class GetWeather extends Component {
                   <h2>
                     <img
                       className="weather-widget__img"
-                      src={`https://openweathermap.org/img/wn/${days[0].icon}.png`}
+                      // src={`https://openweathermap.org/img/wn/${days[0].icon}.png`}
+                      src={
+                        days[0].icon
+                          ? require(`../assets/images/${days[0].icon}.svg`)
+                          : require("../assets/images/01d.svg")
+                      }
                       alt="Weather Faisalabad , PK"
                       width="80"
                       height="80"
                     />
-                    <span
-                      style={{ color: "red", fontSize: 52, paddingTop: 15 }}
-                    >
+                    <span className="tempSpan">
                       {Math.round(days[0].temp - 273.15)}
                     </span>{" "}
                     °C
@@ -157,11 +146,13 @@ class GetWeather extends Component {
                 </div>
               </div>
               <Row className="text-center">
-                {days.slice(1).map(day => (
-                  <Col xs={3}>
-                    <WeatherBox day={day} />
+                <Col xs={1}></Col>
+                {days.map(day => (
+                  <Col xs={2}>
+                    <WeatherBox day={day} selectedDay={selectedDay} />
                   </Col>
                 ))}
+                <Col xs={1}></Col>
               </Row>
             </div>
           )}
@@ -171,15 +162,4 @@ class GetWeather extends Component {
   }
 }
 
-const mapStateToProps = store => ({
-  loader: store.weatherReducer.loader,
-  data: store.weatherReducer.data,
-  getWeatherStatus: store.weatherReducer.getWeatherStatus
-});
-
-export default connect(
-  mapStateToProps,
-  {
-    getWeatherData
-  }
-)(GetWeather);
+export default GetWeather;

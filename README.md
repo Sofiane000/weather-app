@@ -1,5 +1,21 @@
-# weather-app
-a sample weather app
+I used React for this application , Redux and Redux-thunk for state managment ( npm start to run)
+
+I also used async await with axios to fetch the data from the weather api
+
+Navigation:
+
+I used react router for navigation between main page and details page.
+
+Testing:
+
+I used enzyme and Jtest for testing (run npm test):
+GetWeather.test I tested the weather component validity.
+routes.test I am checking both routes the "/" and the "/details"
+weather.test I mounted the provider and assigned the store then tested the initial state.
+
+Erro Hnadling:
+
+I disptached the action error that gets reduced to return an error message.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -69,4 +85,3 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-

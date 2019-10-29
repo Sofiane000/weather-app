@@ -1,144 +1,187 @@
 #main-div {
-    background-image: url('../assets/bar.jpg');
-    height: 100vh;
-    width: 100%;
-    color: white;
+  background-image: url("../assets/bar.jpg");
+  height: 100vh;
+  width: 100%;
+  color: white;
 }
 
 .title {
-    color: green;
-    margin-top: 0px;
-    padding-top: 15px;
-    text-align: center;
+  color: green;
+  margin-top: 0px;
+  padding-top: 15px;
+  text-align: center;
 }
 
 .weather-widget__items {
-    border: 2px white solid;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 15px;
+  border: 2px white solid;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 15px;
 }
 
 .weather-widget__item {
-    text-align: left;
+  text-align: left;
 }
 
 table {
-    border-collapse: collapse;
-  }
-  
-table, th, td {
-    border: 1px soWeatherBoxlid white;
-    padding: 5px;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px soWeatherBoxlid white;
+  padding: 5px;
 }
 
 th {
-    text-align: center;
-    padding: 5px;
+  text-align: center;
+  padding: 5px;
 }
 
 .main {
-    position: relative;
-    height: 75vh;
-    width: 80vw;
-    border-radius: 30px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0px 0px 10px silver;
+  position: relative;
+  height: 75vh;
+  width: 80vw;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0px 0px 10px silver;
+  margin-top: 20px;
 }
 
 .headings-row {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-top: 5vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 5vh;
 }
 
 .first-div {
-    margin-left: auto;
-    margin-right: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
- 
+
 .second-div {
-    padding-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
+  padding-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cont-temp-item {
-    text-align: left;
+  text-align: left;
 }
 
 .temp-item {
-    font-weight: 600;
+  font-weight: 600;
+}
+
+.box:hover {
+  background-image: linear-gradient(180deg, #04bffe 0, #4481eb);
+  opacity: 0.8;
+  border-radius: 7px;
+}
+.weatherDays {
+  background-image: linear-gradient(180deg, #04bffe 0, #4481eb);
+  border-radius: 7px;
+
+  cursor: pointer;
 }
 
 .box-container {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    padding-left: 25px;
-    padding-right: 25px;
-    padding-top: 5vh;
-    justify-content: space-around;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 5vh;
+  justify-content: space-around;
+}
+.headerContainer {
+  display: flex;
 }
 
 @media (max-width: 760px) {
-    .title {
-        display: none;
-    }
+  .title {
+    display: none;
+  }
 
-    #main-div {
-        padding-top: 5vh;
-        height: 115vh;
-        padding-bottom: 5vh;
-    }
+  #main-div {
+    padding-top: 5vh;
+    height: 115vh;
+    padding-bottom: 5vh;
+  }
 
-    .main {
-        height: 100%;
-    }
+  .main {
+    height: 100%;
+  }
 
-    .headings-row {
-        display: flex;
-        flex-direction: column;
-    }
+  .headings-row {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .box {
-        margin-top: 45px
-    }
+  .box {
+    margin-top: 45px;
+  }
 }
 
 @media (max-width: 520px) {
-    .title {
-        display: none;
-    }
+  .title {
+    display: none;
+  }
 
-    #main-div {
-        height: 110vh;
-        width: 100vw;
-    }
+  #main-div {
+    height: 110vh;
+    width: 100vw;
+  }
 
-    .main {
-        height: 100%;
-    }
+  .main {
+    height: 100%;
+  }
 
-    .first-div {
-        text-align: center;
-    }
+  .first-div {
+    text-align: center;
+  }
 
-    .headings-row {
-        display: flex;
-        flex-direction: column;
-    }
+  .headings-row {
+    display: flex;
+    flex-direction: column;
+  }
 
-    .box {
-        margin-top: 55px
-    }
+  .box {
+    margin-top: 55px;
+  }
+}
+
+.backIcon {
+  width: 30px;
+  margin-top: 23px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.wetherContainer {
+  width: 100%;
+  margin-top: 20;
+}
+
+.locationLoader {
+  margin: auto;
+  text-align: center;
+  margin-top: 7%;
+}
+
+.tempSpan {
+  display: inline-block;
+  margin-left: 15px;
+  color: red;
+  font-size: 52px;
+  padding-top: 15px;
 }
